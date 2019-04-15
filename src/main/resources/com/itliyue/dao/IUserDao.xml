@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper  namespace="com.itliyue.dao.IUserDao">
-
+<!--        如果实体类的变量和书库表中的属性不一致时，可以设置resultMap属性或者在条件查询语句里面给每个字段设置别名-->
     <!--<resultMap id="userMap" type="com.itliyue.domain.User2">
         &lt;!&ndash;主键字段的对应&ndash;&gt;
         <id property="userID" column="id"></id>
@@ -26,49 +26,41 @@
 
     </insert>
        <!--修改用户-->
-       <update id="updateUser" parameterType="User" >
-
-          update    user set   username=#{username}  ,birthday=#{birthday} ,sex=#{sex},address=#{address} where id=#{id}
-
-       </update>
+    <update id="updateUser" parameterType="User" >
+        update  user set username=#{username},birthday=#{birthday}, sex=#{sex},address=#{address} where id=#{id}
+    </update>
 
 <!--    根据id查找用户-->
-    <select id="findUser" parameterType="int"  resultType="User">
+<select id="findUser" parameterType="int" resultType="User">
+    select*from user where id=#{xxxxx}
 
-        select* from user  where id=#{xxxxx};
-
-    </select>
-
-
-
+</select>
    <!--    根据id删除用户-->
-       <delete id="deleteUser" parameterType="int">
-         delete  from user  where  id=#{id};
-       </delete>
+<update id="deleteUser" parameterType="int" >
+    delete  from user where  id=#{xxxx};
+
+</update>
+
 
    <!--    模糊查询-->
-       <select id="findByname" parameterType="string" resultType="com.itliyue.domain.User">
-
-           select  *from  user  where username like  #{name};
-
-         /*  select  *from  user  where  username like  "%${vlues}%";*/
-
-       </select>
+<select id="findByname" parameterType="User" resultType="User">
+    select *from  user where username like #{user};
+</select>
 
        <!--查询总记录数-->
-       <select id="findTotal"  resultType="int">
-           select  count(*)  from  user;
-       </select>
+<select id="findTotal"  resultType="int">
+    select count(*) from user;
+
+</select>
 
 
 
 
      <!--  根据queryvo的条件查询用户-->
-   <select id="findUserByvo" parameterType="Quervo" resultType="User">
+    <select id="findUserByvo" parameterType="Quervo" resultType="user">
+        select *from user where  username like #{user.username}
+    </select>
 
-       select * from  user where    username=#{user.username};
-
-   </select>
 
 
 </mapper>

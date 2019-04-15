@@ -53,14 +53,7 @@ public class mybatisTest {
      */
     @Test
     public  void  testSave(){
-        //创建user对象
-        User user=new User();
-        user.setUsername("天下霸道之");
-        user.setBirthday(new Date());
-        user.setSex("男");
-        user.setAddress("杭州市江干区");
-        System.out.println(user);
-        userDao.saveUser(user);
+
 
     }
 
@@ -69,16 +62,11 @@ public class mybatisTest {
      */
     @Test
     public  void testUpdate(){
-        User  user=new User();
-        user.setUsername("王五");
-        user.setBirthday(new Date());
-        user.setSex("男");
-        user.setAddress("北京市");
-        System.out.println("修改前"+user);
+        User user=new User();
+        user.setId(48);
+        user.setUsername("迪丽热巴");
+        user.setAddress("北京市东城区");
         userDao.updateUser(user);
-
-        System.out.println("修改后"+user);
-
 
     }
 
@@ -87,7 +75,7 @@ public class mybatisTest {
      */
     @Test
     public  void  deleteUser(){
-        userDao.deleteUser(46);
+        userDao.deleteUser(52);
     }
 
     /**
@@ -95,17 +83,18 @@ public class mybatisTest {
      */
     @Test
     public   void  findByname(){
-        List<User> list = userDao.findByname("%李%");
+        List<User> list = userDao.findByname("%张%");
         for (User user : list) {
             System.out.println(user);
         }
+
     }
 
     /**
      * 查询总数
      */
     @Test
-    public  void findTotal(){
+    public  void findTotal() {
         int num = userDao.findTotal();
         System.out.println(num);
     }
@@ -117,6 +106,8 @@ public class mybatisTest {
     public  void   findUser(){
         User user = userDao.findUser(48);
         System.out.println(user);
+
+
     }
 
     /**
@@ -124,24 +115,17 @@ public class mybatisTest {
      */
     @Test
     public  void  findvo(){
-        Quervo  vo=new Quervo();
-        User  user=new User();
-        user.setUsername("李四");
+        Quervo vo=new Quervo();
+        User user=new User();
+        user.setUsername("%张%");
         vo.setUser(user);
-        List<User> use= userDao.findUserByvo(vo);
-        for (User user1 : use) {
-            System.out.println(user1);
+        List<User> list = userDao.findUserByvo(vo);
+        for (User u : list) {
+            System.out.println(u);
         }
 
 
-
     }
-
-
-
-
-
-
 
 
     @After//用户在测试方法执行之后执行
